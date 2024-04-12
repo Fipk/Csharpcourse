@@ -1,0 +1,7 @@
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\bin\Debug\Pokemon-like.exe.config
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\bin\Debug\Pokemon-like.exe
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\bin\Debug\Pokemon-like.pdb
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-like.csproj.AssemblyReference.cache
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-like.csproj.CoreCompileInputs.cache
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-like.exe
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-like.pdb
