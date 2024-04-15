@@ -11,11 +11,19 @@ namespace Pokemon_like
     {
         static void Main(string[] args)
         {
-            // systeme de sauvegarde JSON
-            // systeme classique
-            // Rajoutera la POO
-            // rajoutera les Collections
-            // rajoutera les design patterns
+            // TODO Pokecenter (soigner les pokemons, on peut acheter des objets)
+            // TODO Class Player, Enemy qui hérite dresseur
+            // TODO Dresseur: money, son équipe de pokemons, inventeur de type item
+            // TODO Retravailler la class Pokemon pour que chaque pokemon est au moins deux types d'attaques
+            // TODO Laisser le choix au joueur de choisir quel attaque faire
+
+
+            // S'il vous reste du temps
+            // TODO Pokeball, Hyperball, SuperBall qui hérite de item
+            // TODO Pouvoir capturer des pokemons durant le combat lorsqu'ils au moins de 50% de leur vie
+            // TODO Faire une map ou vous pouvez vous baladez et donc 30% de tomber sur un pokemon
+            // TODO Vous pouvez faire une arene
+            // TODO Vous pouvez faire les évolutions des pokemons
 
             int money = 10;
 
@@ -30,11 +38,12 @@ namespace Pokemon_like
             // Exemple d'instanciation pokemon
             Pokemon carapuce = new Pokemon(5, "Carapuce", 20);
             Pokemon ratata = new Pokemon(2, "Ratata", 10);
+            
 
             while (true)
             {
                 
-                Console.Clear();
+                //Console.Clear();
                 Console.WriteLine("What do you want to do " + username + " ?");
                 Console.WriteLine("You have " + money + " money left.");
                 Console.WriteLine("1. Battle with a random pokemon");
@@ -46,6 +55,7 @@ namespace Pokemon_like
                 {
                     case "1":
                         Console.WriteLine("Battle"); // TODO
+                        Battle(carapuce, ratata, money);
                         // Si vos pokemons ont 0 vie impossible
                         break;
                     case "2":
@@ -62,30 +72,90 @@ namespace Pokemon_like
                     default:
                         break;
                 }
-                Console.ReadLine();
+                Console.WriteLine("---- END OF LOOP DECISION ----");
             }
         }
 
-        public static void Battle() // TODO
+        public static void Battle(Pokemon playerPokemon, Pokemon encounteredPokemon, int money)
         {
-            // Afficher les points de vie de votre pokemon et de celui que vous rencontrez
-            // Vous montrez les choix que le joueur a: Attaquer ou s'échapper
-            // s'il choisit d'attaquer il va faire les dégàts du pokemon
-            // ensuite c'est l'autre pokemon qui joue qu'il ne fera que attaquer
-            // sinon il choisit de s'enfuir et il a 50% de chance de réussir 
-            // s'il réussit vous lui mettez un message de réussite et le combat quitte
-            // sinon il ne réussit et c'est à l'autre pokemon de jouer
-            // quand le pokemon rencontrez vous gagnez de l'argent et le combat se termine
-            // si par contre c'est vous qui mourrez le combat s'annule et votre ne peut plus se battre
+            
+            bool isInCombat = true;
+            encounteredPokemon.currentHealth = encounteredPokemon.maxHealth;
+            while(isInCombat)
+            {
+                Console.WriteLine(isInCombat);
+                Console.WriteLine("My pokemon is " + playerPokemon.name + " and it has " + playerPokemon.currentHealth + " health left.");
+                Console.WriteLine("The pokemon encountered is " + encounteredPokemon.name + " and it has " + encounteredPokemon.currentHealth + " health left.");
+                Console.WriteLine("1. Attack");
+                Console.WriteLine("2. Flee");
+                string value = Console.ReadLine();
+                switch (value)
+                {
+                    case "1":
+                        Console.WriteLine("Attack");
+                        isInCombat = Attack(playerPokemon, encounteredPokemon, money);
+                       
+                        break;
+                    case "2":
+                        Console.WriteLine("Flee");
+                        isInCombat = TryToFlee();
+                        break;
+                    default:
+                        break;
+                }
+                Console.WriteLine("*** END OF YOUR TURN ***");
+                if (isInCombat)
+                {
+                    isInCombat = EnemyTurn(playerPokemon, encounteredPokemon);
+                }
+                Console.WriteLine("*** END OF ENEMY TURN ***");
+            }
+            
+
         }
 
-        public static void PokemonCenter() // NOT TODO comme vous voulez
+        public static bool EnemyTurn(Pokemon playerPokemon, Pokemon encounteredPokemon)
+        {
+            if (playerPokemon.RemoveHealth(encounteredPokemon.damage))
+            {
+                Console.WriteLine("You lost the fight");
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Attack(Pokemon playerPokemon, Pokemon encounteredPokemon,int money)
+        {
+      
+            if (encounteredPokemon.RemoveHealth(playerPokemon.damage))
+            {
+                Console.WriteLine("You won the fight and you gain 5 money.");
+                money += 5;
+                return false;
+            }
+            return true;
+        }
+
+        public static bool TryToFlee()
+        {
+            Random random = new Random();
+            int rnd = random.Next(1, 3);
+            if (rnd == 1)
+            {
+                Console.WriteLine("You succeeded to flee");
+                return true;
+            }
+            return false;
+        }
+        
+
+        public static void PokemonCenter() 
         {
             // On rentre dans le pokemon center et ca soigne les pokemons
             // en dépensant de l'argent si possible
         }
 
-        public static void PokeStore() // NOT TODO comme vous voulez
+        public static void PokeStore() 
         {
            // On lui présente ce qu'il peut acheter
            // vous lui donnez le choix
@@ -95,26 +165,35 @@ namespace Pokemon_like
            // sinon vous lui dites que c'est impossible et il resort
         }
 
-        class Pokemon
+        public class Pokemon
         {
             public int damage;
             public string name;
-            public int health;
-            public Pokemon(int m_damage, string m_name, int m_health) 
+            public int currentHealth;
+            public int maxHealth;
+            public Pokemon(int m_damage, string m_name, int m_maxHealth) 
             {
                 this.damage = m_damage;
                 this.name = m_name;
-                this.health = m_health;
+                this.maxHealth = m_maxHealth;
+                this.currentHealth = m_maxHealth;
             }
 
-            public void RemoveHealth(int m_damage)
+            public bool RemoveHealth(int m_damage)
             {
-                // check si le pokemon est mort
-                // si oui le combat va s'annuler
-                // sinon ca continue
-                health -= m_damage;
-                health = health - m_damage;
                 
+                currentHealth -= m_damage;
+                if (currentHealth <= 0)
+                {
+                    return true;
+                }
+                return false;
+                
+            }
+
+            public void Display()
+            {
+                Console.WriteLine(name + " Health: " + currentHealth);
             }
         }
     }
