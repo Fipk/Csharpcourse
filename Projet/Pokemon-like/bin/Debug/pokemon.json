@@ -1,0 +1,112 @@
+[
+  {
+    "Id": 1,
+    "Name": "Bulbizarre",
+    "Type": [ "Grass", "Poison" ],
+    "Stats": {
+      "HP": 45,
+      "Attack": 49,
+      "Defense": 49,
+      "Speed": 45
+    }
+  },
+  {
+    "Id": 2,
+    "Name": "Herbizarre",
+    "Type": [ "Grass", "Poison" ],
+    "Stats": {
+      "HP": 60,
+      "Attack": 62,
+      "Defense": 63,
+      "Speed": 60
+    }
+  },
+  {
+    "Id": 3,
+    "Name": "Florizarre",
+    "Type": [ "Grass", "Poison" ],
+    "Stats": {
+      "HP": 80,
+      "Attack": 82,
+      "Defense": 83,
+      "Speed": 80
+    }
+  },
+  {
+    "Id": 4,
+    "Name": "Salamèche",
+    "Type": [ "Fire" ],
+    "Stats": {
+      "HP": 39,
+      "Attack": 52,
+      "Defense": 43,
+      "Speed": 65
+    }
+  },
+  {
+    "Id": 5,
+    "Name": "Reptincel",
+    "Type": [ "Fire" ],
+    "Stats": {
+      "HP": 58,
+      "Attack": 64,
+      "Defense": 58,
+      "Speed": 80
+    }
+  },
+  {
+    "Id": 6,
+    "Name": "Dracaufeu",
+    "Type": [ "Fire", "Flying" ],
+    "Stats": {
+      "HP": 78,
+      "Attack": 84,
+      "Defense": 78,
+      "Speed": 100
+    }
+  },
+  {
+    "Id": 7,
+    "Name": "Carapuce",
+    "Type": [ "Water" ],
+    "Stats": {
+      "HP": 44,
+      "Attack": 48,
+      "Defense": 65,
+      "Speed": 43
+    }
+  },
+  {
+    "Id": 8,
+    "Name": "Carabaffe",
+    "Type": [ "Water" ],
+    "Stats": {
+      "HP": 59,
+      "Attack": 63,
+      "Defense": 80,
+      "Speed": 58
+    }
+  },
+  {
+    "Id": 9,
+    "Name": "Tortank",
+    "Type": [ "Water" ],
+    "Stats": {
+      "HP": 79,
+      "Attack": 83,
+      "Defense": 100,
+      "Speed": 78
+    }
+  },
+  {
+    "Id": 10,
+    "Name": "Chenipan",
+    "Type": [ "Bug" ],
+    "Stats": {
+      "HP": 45,
+      "Attack": 30,
+      "Defense": 35,
+      "Speed": 45
+    }
+  }
+]

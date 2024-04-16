@@ -5,3 +5,6 @@ C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-like.csp
 C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-like.csproj.CoreCompileInputs.cache
 C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-like.exe
 C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-like.pdb
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\bin\Debug\Newtonsoft.Json.dll
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\bin\Debug\Newtonsoft.Json.xml
+C:\Users\lnm33\source\repos\Pokemon-like\Pokemon-like\obj\Debug\Pokemon-.A74BC476.Up2Date
