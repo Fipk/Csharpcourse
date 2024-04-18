@@ -46,12 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Building\PokemonCenter.cs" />
+    <Compile Include="Assets\Items\Consumables\Potions\HealingPotion.cs" />
+    <Compile Include="Assets\Trainers\Dresseur.cs" />
+    <Compile Include="Assets\Trainers\Enemy.cs" />
+    <Compile Include="Core\GameInstance.cs" />
+    <Compile Include="Assets\Items\Item.cs" />
+    <Compile Include="Assets\Trainers\Player.cs" />
+    <Compile Include="Assets\Items\PokeBall\PokeBall.cs" />
+    <Compile Include="Assets\Mobs\Pokemon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Tools.cs" />
+    <Compile Include="Utils\UtilsBall.cs" />
+    <Compile Include="Utils\UtilsConsumables.cs" />
+    <Compile Include="Utils\UtilsPokemon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Items\Consumables\Foods\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
