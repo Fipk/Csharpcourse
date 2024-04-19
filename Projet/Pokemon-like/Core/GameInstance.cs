@@ -1,28 +1,52 @@
 ﻿using Newtonsoft.Json;
 using Pokemon_like.Assets.Building;
 using Pokemon_like.Assets.Items.Consumables.Potions;
+using Pokemon_like.Core;
 using Pokemon_like.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Pokemon_like.Program;
 
 namespace Pokemon_like
 {
     public class GameInstance
     {
+
+        #region Attributes
+
         private Player player = new Player("calvin", 500);
         private PokemonCenter pokemonCenter = new PokemonCenter();
         private ToolsPokemon tools = new ToolsPokemon();
+        public bool isInCombat;
+        public Pokemon encounteredPokemon;
 
-        public GameInstance()
+        #endregion
+
+        #region Singleton
+
+        private static GameInstance instance;
+        private GameInstance()
         {
             GameLoop();
         }
 
+        public static GameInstance GetInstance()
+        {
+            if (instance == null)
+            {
+                return new GameInstance();
+            }
+            return instance;
+        }
+        #endregion
+
+        public Player GetPlayer() { return player; }
         public void GameLoop()
         {
             Start();
@@ -35,22 +59,9 @@ namespace Pokemon_like
             player.AddPokemonInTeam(new Pokemon(50, "Ronflex4", 300, 100, 120, types));
 
             Console.WriteLine("Welcome back " + player.GetName());
-
-            while (true)
+            /*while (true)
             {
-
-                //Console.Clear();
-                Console.WriteLine("What do you want to do " + player.GetName() + " ?");
-                //Console.WriteLine("You have " + money + " money left.");
-                Console.WriteLine("1. Battle with a random pokemon");
-                Console.WriteLine("2. Meet a trainer.");
-                Console.WriteLine("3. Go to the Pokemon center");
-                Console.WriteLine("4. Show my items");
-                Console.WriteLine("5. Show all my pokemon");
-                Console.WriteLine("6. Leave the game");
-
-                string value = Console.ReadLine();
-                switch (value)
+                switch ("")
                 {
                     case "1":
                         Battle();
@@ -58,25 +69,33 @@ namespace Pokemon_like
                         break;
                     case "2":
                         MeetATrainer();
+
                         // Si vos pokemons ont 0 vie impossible
                         break;
                     case "3":
                         pokemonCenter.EnterPokemonCenter(ref player);
+
                         break;
                     case "4":
                         tools.ShowItems(ref player);
+
                         break;
                     case "5":
                         tools.ShowAllPokemons(ref player);
+
                         break;
                     case "6":
                         Console.WriteLine("Leave the game"); // TODO
+
                         break;
                     default:
+                        Console.WriteLine("Leave the game");
+
                         break;
                 }
+
                 Console.WriteLine("---- END OF LOOP DECISION ----");
-            }
+            }*/
         }
 
         public void MeetATrainer()
@@ -106,9 +125,9 @@ namespace Pokemon_like
             Console.WriteLine("Hello user, welcome to the pokemon-like");
             Console.WriteLine("Enter your username before the game starts");
 
-            string username = Console.ReadLine();
+            string username = "";
             player.SetName(username);
-            Console.Clear();
+            //Console.Clear();
             StarterChoice();
         }
 
@@ -122,7 +141,7 @@ namespace Pokemon_like
             Console.Write("3. ");
             tools.GenerateAPokemon(6).Display();
 
-            string value = Console.ReadLine();
+            string value = "";
             switch (value)
             {
                 case "1":
@@ -140,24 +159,30 @@ namespace Pokemon_like
             }
         }
 
-        public void Battle()
+        public Pokemon GenerateRandomPokemon()
         {
-            Console.Clear();
-            bool isInCombat = true;
             Random random = new Random();
             int rnd = random.Next(0, 10);
             Pokemon encounteredPokemon = tools.GenerateAPokemon(rnd);
             encounteredPokemon.SetCurrentHealth();
+            return encounteredPokemon;
+        }
+
+        public void Battle()
+        {
+            Console.Clear();
+            isInCombat = true;
             Pokemon pokemonPlayer = player.GetTeam()[0];
-            while (isInCombat)
+            /*while (isInCombat)
             {
                 Console.WriteLine("My pokemon is " + pokemonPlayer.GetName() + " and it has " + pokemonPlayer.GetCurrentHealth() + " health left.");
                 Console.WriteLine("The pokemon encountered is " + encounteredPokemon.GetName() + " and it has " + encounteredPokemon.GetCurrentHealth() + " health left.");
                 Console.WriteLine("1. Attack");
                 Console.WriteLine("2. Flee");
                 Console.WriteLine("3. Catch");
-                Console.WriteLine("4. Use a Potion");
-                Console.WriteLine("5. Exchange a pokemon");
+                Console.WriteLine("4. Use a Potion of Healing");
+                Console.WriteLine("5. Use a Potion of Damage");
+                Console.WriteLine("6. Exchange a pokemon");
                 string value = Console.ReadLine();
                 switch (value)
                 {
@@ -188,13 +213,21 @@ namespace Pokemon_like
                         }
                         break;
                     case "5":
+                        if (player.CheckIfHasItem("Damage Potion"))
+                        {
+                            DamagePotion potion = new DamagePotion(10, "Damage Potion", 20);
+                            potion.Use(ref encounteredPokemon);
+                            player.RemoveItemInBag("Damage Potion");
+                        }
+                        break;
+                    case "6":
                         for (int i = 0; i < player.GetTeam().Count; i++)
                         {
                             if (player.GetTeam()[i].GetName() == pokemonPlayer.GetName() || player.GetTeam()[i].GetCurrentHealth() <= 0)
                             {
                                 continue;
                             }
-                            //pokemon.get
+                           
                             
                             Console.WriteLine(i + ". " + player.GetTeam()[i].GetName() + ". He has " + player.GetTeam()[i].GetCurrentHealth() + " left.");
                         }
@@ -211,7 +244,7 @@ namespace Pokemon_like
                     isInCombat = EnemyTurn(ref pokemonPlayer, ref encounteredPokemon);
                 }
                 Console.WriteLine("*** END OF ENEMY TURN ***");
-            }
+            }*/
 
 
         }
@@ -233,9 +266,11 @@ namespace Pokemon_like
             {
                 Console.WriteLine("You won the fight and you gain 5 money.");
                 money += 5;
+                
                 return false;
             }
-            return true;
+            
+            return EnemyTurn(ref playerPokemon, ref encounteredPokemon);
         }
 
     }

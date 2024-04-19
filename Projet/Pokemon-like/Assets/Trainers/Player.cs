@@ -10,6 +10,7 @@ namespace Pokemon_like
     public class Player : Dresseur
     {
         private List<Pokemon> pokemonStock = new List<Pokemon>();
+        private int choice = 0;
         public Player(string name, int money) : base(name)
         {
             this.money = money;
@@ -49,5 +50,8 @@ namespace Pokemon_like
             }
             return false;
         }
+
+        public int GetChoice() { return choice; }
+        public void SetChoice(int m_choice) {  this.choice = m_choice; }
     }
 }

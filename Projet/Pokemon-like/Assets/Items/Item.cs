@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pokemon_like
 {
-    public class Item
+    public abstract class Item
     {
         private string name;
         private int price;
@@ -14,6 +14,11 @@ namespace Pokemon_like
         {
             this.price = m_price;
             this.name = m_name;
+        }
+
+        public virtual void Use(ref Pokemon pokemon)
+        {
+
         }
 
         public string GetName() { return name; }

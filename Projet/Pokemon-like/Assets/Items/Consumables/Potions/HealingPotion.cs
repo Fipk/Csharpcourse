@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pokemon_like.Assets.Items.Consumables.Potions
 {
-    public class HealingPotion : Item, IUtilsConsumables
+    public class HealingPotion : Item
     {
         private int healthToHeal;
         public HealingPotion(int m_price, string m_name, int healthToHeal) : base(m_price, m_name)
@@ -15,7 +15,7 @@ namespace Pokemon_like.Assets.Items.Consumables.Potions
             this.healthToHeal = healthToHeal;
         }
 
-        public void Use(ref Pokemon pokemon)
+        public override void Use(ref Pokemon pokemon)
         {
             pokemon.AddCurrentHealth(healthToHeal);
         }

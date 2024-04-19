@@ -1,0 +1,10 @@
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\bin\Debug\Cours Windows Form.exe.config
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\bin\Debug\Cours Windows Form.exe
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\bin\Debug\Cours Windows Form.pdb
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\obj\Debug\Cours Windows Form.csproj.AssemblyReference.cache
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\obj\Debug\Cours_Windows_Form.Properties.Resources.resources
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\obj\Debug\Cours Windows Form.csproj.GenerateResource.cache
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\obj\Debug\Cours Windows Form.csproj.CoreCompileInputs.cache
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\obj\Debug\Cours Windows Form.exe
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\obj\Debug\Cours Windows Form.pdb
+C:\Users\lnm33\source\repos\Cours Windows Form\Cours Windows Form\obj\Debug\Cours_Windows_Form.Form1.resources
